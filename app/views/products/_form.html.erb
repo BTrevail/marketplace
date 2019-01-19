@@ -1,0 +1,30 @@
+<% if @product.errors.any? %>
+  <h2>Product was not created due to the following errors:</h2>
+  <ul>
+    <% @product.errors.full_messages.each do |msg| %>
+
+      <li><%= msg %></li>
+    <% end %>
+  </ul>>
+<% end %>
+
+<%= form_for @product do |f| %>
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>
+    <p>
+    <%= f.label :price %><br/>
+    <%= f.number_field :price, :step => "0.01" %>
+  </p>
+  </p>
+    <p>
+    <%= f.label :count %><br/>
+    <%= f.number_field :count %>
+  </p>
+  <p>
+  	<%= f.submit %>
+  </p>
+<% end %>
+
+<p><%= link_to "index", products_path %></p>

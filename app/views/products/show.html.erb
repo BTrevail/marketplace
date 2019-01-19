@@ -1,0 +1,23 @@
+<h1>Showing Product: <%= @product.id %></h1>
+
+<p>
+  Title: <%= @product.title %>
+</p>
+
+<p>
+  Price: <%= @product.price %>
+</p>
+
+<p>
+  Count: <%= @product.count %>
+</p>
+
+<p>
+  Created: <%= @product.created_at %>
+</p>
+
+<p>
+  Updated: <%= @product.updated_at %>
+</p>
+
+<p><%= link_to "index", products_path %></p>
