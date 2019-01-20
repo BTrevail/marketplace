@@ -1,5 +1,7 @@
  class ProductsController < ApplicationController
   before_action :set_product, only: [:edit, :update, :show, :destroy]
+  before_action :require_user
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -14,6 +16,7 @@
 
   def create
     @product = Product.new(product_params)
+    @product.user = current_user
 
     if @product.save
       flash[:notice] = "Product was successfully created"
@@ -50,6 +53,13 @@
 
     def product_params
       params.require(:product).permit(:title, :price, :count)
+    end
+
+    def require_same_user
+      if current_user != @product.user
+        flash[:danger] = "Incorrect user..."
+        redirect_to root_path
+      end
     end
 
  end

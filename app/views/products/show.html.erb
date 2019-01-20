@@ -1,28 +1,13 @@
 <h1>Showing Product: <%= @product.id %></h1>
 
-<p>
-  Title: <%= @product.title %>
-</p>
-
-<p>
-  Price: <%= @product.price %>
-</p>
-
-<p>
-  Count: <%= @product.count %>
-</p>
+<p>Title: <%= @product.title %></p>
+<p>Price: <%= @product.price %></p>
+<p>Count: <%= @product.count %></p>
 
 <ul>
-	<li><%= link_to @product.user.username, user_path(user) %></li>
-	<li><%= pluralize(@product.user.products.count, "product") if user.products %></li>
+	<li><%= link_to @product.user.username, user_path(@product.user) %></li>
+	<li><%= pluralize(@product.user.products.count, "product") if @product.user.products %></li>
 </ul>
 
-<p>
-  Created: <%= time_ago_in_words(@product.created_at) ago%>
-</p>
-
-<p>
-  Updated: <%= time_ago_in_words(@product.updated_at) ago%>
-</p>
-
-<p><%= link_to "index", products_path %></p>
+<p>Created: <%= time_ago_in_words(@product.created_at) %> ago</p>
+<p>Updated: <%= time_ago_in_words(@product.updated_at) %> ago</p>

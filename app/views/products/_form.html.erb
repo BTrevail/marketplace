@@ -7,7 +7,7 @@
   </p>
     <p>
     <%= f.label :price %><br/>
-    <%= f.number_field :price,, placeholder: "Enter Price" :step => "0.01" %>
+    <%= f.number_field :price, placeholder: "Enter Price", :step => "0.01" %>
   </p>
   </p>
     <p>
@@ -18,5 +18,3 @@
   	<%= f.submit %>
   </p>
 <% end %>
-
-<p><%= link_to "index", products_path %></p>
