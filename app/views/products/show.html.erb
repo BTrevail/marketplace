@@ -12,12 +12,17 @@
   Count: <%= @product.count %>
 </p>
 
+<ul>
+	<li><%= link_to @product.user.username, user_path(user) %></li>
+	<li><%= pluralize(@product.user.products.count, "product") if user.products %></li>
+</ul>
+
 <p>
-  Created: <%= @product.created_at %>
+  Created: <%= time_ago_in_words(@product.created_at) ago%>
 </p>
 
 <p>
-  Updated: <%= @product.updated_at %>
+  Updated: <%= time_ago_in_words(@product.updated_at) ago%>
 </p>
 
 <p><%= link_to "index", products_path %></p>

@@ -1,26 +1,18 @@
-<% if @product.errors.any? %>
-  <h2>Product was not created due to the following errors:</h2>
-  <ul>
-    <% @product.errors.full_messages.each do |msg| %>
-
-      <li><%= msg %></li>
-    <% end %>
-  </ul>>
-<% end %>
+<%= render 'shared/errors', obj: @product %>
 
 <%= form_for @product do |f| %>
   <p>
     <%= f.label :title %><br/>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder: "Enter Product Name" %>
   </p>
     <p>
     <%= f.label :price %><br/>
-    <%= f.number_field :price, :step => "0.01" %>
+    <%= f.number_field :price,, placeholder: "Enter Price" :step => "0.01" %>
   </p>
   </p>
     <p>
     <%= f.label :count %><br/>
-    <%= f.number_field :count %>
+    <%= f.number_field :count, placeholder: "Enter Count" %>
   </p>
   <p>
   	<%= f.submit %>

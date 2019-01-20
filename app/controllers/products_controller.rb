@@ -36,6 +36,7 @@
   end
 
   def destroy
+    @product = Product.find(params[:id])
     if @product.destroy
     	flash[:notice] = "Product " + @product.id.to_s + " has been destroyed!"
     	redirect_to products_path
@@ -44,7 +45,7 @@
 
   private 
     def set_product
-      @product.find(params[:id])
+      @product = Product.find(params[:id])
     end
 
     def product_params
