@@ -6,16 +6,25 @@
 	</tr>
 
 	<% obj.each do |product| %>
-	<tr>
-		<td><%= link_to product.title, product_path(product)  %></td>
-		<td><%= product.price %></td>
-		<td><%= product.count %></td>
+		<% if product.count > 0 || current_user == product.user %> 
+			<tr>
+				<td><%= link_to product.title, product_path(product)  %></td>
+				<td>$<%= product.price %></td>
+				<td><%= product.count %></td>
+				<td>
+					<%= form_for CartItem.new do |f| %>
+					<%= f.hidden_field :product_id, :value => product.id %>
+					<%= f.hidden_field :user_id, :value => current_user %>
+					<%= f.number_field :count, :value => 1, placeholder: "1" %>
+					<%= f.submit  "Add to Cart" %>
+					<% end %>
+				</td>
 
-		<% if is_logged_in && current_user == product.user %>
-			<td><%= link_to 'Edit', edit_product_path(product) %></td>
-			<td><%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure you wich to delete product: " + product.id.to_s} %></td>
-		<% end %>
-	</tr>
+				<% if is_logged_in && current_user == product.user %>
+					<td><%= link_to 'Edit', edit_product_path(product) %></td>
+					<td><%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure you wich to delete product: " + product.id.to_s} %></td>
+				<% end %>
+			</tr>
+		<% end %>	
 	<% end %>
-
 </table>

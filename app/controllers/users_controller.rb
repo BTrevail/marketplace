@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:edit, :update, :show]
-  before_action :require_user
+  before_action :require_user, except: [:new, :create]
   before_action :require_same_user, only: [:edit, :update]
 
   def index
@@ -33,6 +33,13 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  def buy
+    current_user.cart_items.each do |item|
+      item.destroy
+    end
+    redirect_to edit_cart_item_path(current_user)
   end
 
   private

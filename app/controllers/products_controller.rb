@@ -28,7 +28,7 @@
 
   def update
     if @product.update(product_params)
-      flash[:notice] = "Product was successfully updated"
+      flash[:notice] = "Product was successfully updated" + params.inspect
       redirect_to product_path(@product)
     else
       render 'edit'

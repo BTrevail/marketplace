@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 
-  has_many :products
+  has_many :products, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
+  
   before_save {self.email = email.downcase}
 
   validates :username, presence: true, 
