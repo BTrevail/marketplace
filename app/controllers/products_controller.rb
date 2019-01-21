@@ -3,10 +3,12 @@
   before_action :require_user
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
+  # index for diplaying all products
   def index
     @products = Product.all
   end
 
+  # create new product
   def new
     @product = Product.new
   end
@@ -14,6 +16,7 @@
   def edit
   end
 
+  # create a new product from data
   def create
     @product = Product.new(product_params)
     @product.user = current_user
@@ -26,6 +29,7 @@
     end
   end
 
+  #  update product with supplied data
   def update
     if @product.update(product_params)
       flash[:notice] = "Product was successfully updated" + params.inspect
@@ -38,6 +42,7 @@
   def show
   end
 
+  # remove product from table
   def destroy
     @product = Product.find(params[:id])
     if @product.destroy

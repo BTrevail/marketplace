@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
 
   def new
-
   end
 
+  # creates a new session for user authentication
   def create
     user = User.find_by(email: params[:session][:email].downcase)
 
@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # Destroys session on user logout
   def destroy
   	session[:user_id] = nil
   	flash[:success] = "Logged Out..."

@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   	@user = User.new
   end
 
+  # create new user from data
   def create
     @user = User.new(user_params)
     if @user.save
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
   def edit	
   end
 
+  # update user data
   def update
   	if @user.update(user_params)
   	  flash[:success] = "Updated " + @user.username + " successfully!"
@@ -35,6 +37,8 @@ class UsersController < ApplicationController
   def show
   end
 
+  # destroy all items in the user's cart without returning them to the products table
+  # this simulates buying all the items in the cart
   def buy
     current_user.cart_items.each do |item|
       item.destroy
